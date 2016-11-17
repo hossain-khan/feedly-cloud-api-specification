@@ -10,7 +10,7 @@ info:
     Blank fields are omitted.
 
     All timestamps are UTC EPOCH in milliseconds (number of milliseconds since January 1st 1970, UTC timezone).
-  version: "1.0.0"
+  version: "3.0"
   title: Feedly Cloud API
   termsOfService: https://developer.feedly.com/v3/tos/
   contact:
