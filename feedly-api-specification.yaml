@@ -1,0 +1,179 @@
+swagger: "2.0"
+info:
+  description: |
+    The feedly Cloud API
+    
+    This describes the resources that make up the official feedly cloud API v3. If you have any problems or requests please contact us through the [developer forum](https://groups.google.com/forum/#!forum/feedly-cloud).
+
+    All API access is over HTTP or HTTPS, and accessed from the cloud.feedly.com domain. All data is sent and received as JSON.
+
+    Blank fields are omitted.
+
+    All timestamps are UTC EPOCH in milliseconds (number of milliseconds since January 1st 1970, UTC timezone).
+  version: "1.0.0"
+  title: Feedly Cloud API
+  termsOfService: https://developer.feedly.com/v3/tos/
+  contact:
+    name: support@feedly.com
+host: cloud.feedly.com
+basePath: /v3
+schemes:
+  - http
+  - https
+  
+# List of API paths
+paths:
+
+  # https://developer.feedly.com/v3/search/#find-feeds-based-on-title-url-or-topic
+  /search/feeds:
+    get:
+      summary: Find feeds
+      description: Find feeds based on title, url or topic (Authorization is optional)
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: query
+          description: The search query. Can be a feed url, a site title, a site url or a topic
+          required: true
+          type: string
+        - in: query
+          name: count
+          description: The number of results. default value is 20
+          required: false
+          type: number
+          format: int32
+        - in: query
+          name: locale
+          description: hint the search engine to return feeds in that locale (e.g. "pt", "fr_FR") topic
+          required: false
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/SearchResponse"
+    
+definitions:
+
+  SearchResponse:
+    type: object
+    properties:
+      results:
+        description: a list of feeds matching the search query. Feeds which are sponsored should be listed above feeds which are featured and above other search results.
+        type: array
+        items:
+          $ref: "#/definitions/FeedItem"
+      related:
+        description: a list of other keywords the user might be interested in searching.
+        type: array
+        items:
+          type: string
+      hint:
+        description: an auto-completion guess of the keyword the user is trying to search for.
+        type: string
+    example:
+        results:
+          - velocity: 47.8
+            feedId: feed/http://daringfireball.net/index.xml
+            featured: true
+            title: Daring Fireball
+            website: http://daringfireball.net/
+            subscribers: 359471
+            curated: true
+          - velocity: 36.4
+            feedId: feed/http://www.macrumors.com/macrumors.xml
+            featured: true
+            title: MacRumors
+            website: http://www.macrumors.com
+            subscribers: 322765
+            curated: true
+          - velocity: 22.9
+            feedId: feed/http://theappleblog.com/feed/
+            featured: true
+            title: The Apple Blog
+            website: http://gigaom.com
+            subscribers: 118576
+            curated: true
+        hint: apple
+        related:
+          - tech
+          - technology
+          - osx
+          - macintosh
+          - mac
+        
+  FeedItem:
+    type: object
+    required:
+      - title
+      - feedId
+      - subscribers
+    properties:
+      feedId:
+        description: the unique, immutable id of this feed. This is a resource id with format `feed/:url` example - `feed/http://feeds.engadget.com/weblogsinc/engadget`
+        type: string
+      title:
+        description: the feed name.
+        type: string
+      description:
+        description: the feed description.
+        type: string
+      website:
+        description: the website for this feed.
+        type: string
+      visualUrl:
+        description: the icon URL for this feed.
+        type: string
+      language:
+        description: this field is a combination of the language reported by the RSS feed, and the language automatically detected from the feed’s content. It might not be accurate, as many feeds misreport it.
+        type: string
+      velocity:
+        description: the average number of articles published weekly. This number is updated every few days.
+        type: number
+        format: float
+      subscribers:
+        description: number of feedly cloud subscribers who have this feed in their subscription list.
+        type: integer
+        format: int64
+      curated:
+        type: boolean
+      featured:
+        type: boolean
+      lastUpdated:
+        description: the timestamp, in ms, when feedly cloud last receive an article from this feed.
+        type: integer
+        format: int64
+    example:
+      feedId: feed/http://androidcommunity.com/feed/
+      language: en
+      subscribers: 52907
+      lastUpdated: 1479351660000
+      title: Android Community
+      velocity: 113.2
+      website: https://androidcommunity.com
+      score: 1148
+      coverage: 0.11
+      coverageScore: 3.53
+      estimatedEngagement: 113
+      hint: android
+      curated: true
+      featured: true
+      scheme: TEXT:BASELINE:CURATED_SEARCH
+      contentType: article
+      description: Android News, Reviews, and Apps
+      coverUrl: http://storage.googleapis.com/site-assets/6ZG-RMo52Ow3y7H35IgpBqTP75WZXqRbkM1jB-YO-ts_cover-154124f9822
+      iconUrl: http://storage.googleapis.com/site-assets/6ZG-RMo52Ow3y7H35IgpBqTP75WZXqRbkM1jB-YO-ts_icon-154124f9822
+      partial: false
+      visualUrl: http://storage.googleapis.com/site-assets/6ZG-RMo52Ow3y7H35IgpBqTP75WZXqRbkM1jB-YO-ts_visual-154124f9822
+      coverColor: '000000'
+      twitterScreenName: androids
+      twitterFollowers: 453558
+      facebookUsername: androidcommunity
+      facebookLikes: 833942
+      art: 33.45
+      deliciousTags:
+      - android
+      - tech
+      - mobile
+
