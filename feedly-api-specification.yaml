@@ -123,7 +123,13 @@ definitions:
         description: the website for this feed.
         type: string
       visualUrl:
+        description: the visual/icon URL for this feed.
+        type: string
+      iconUrl:
         description: the icon URL for this feed.
+        type: string
+      coverUrl:
+        description: the cover image URL for this feed.
         type: string
       language:
         description: this field is a combination of the language reported by the RSS feed, and the language automatically detected from the feed’s content. It might not be accurate, as many feeds misreport it.
