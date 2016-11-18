@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amardeshbd/feedly-cloud-api-specification.svg)](https://travis-ci.org/amardeshbd/feedly-cloud-api-specification) [![https://img.shields.io/badge/OpenAPI--Spec-valid-green.svg](https://img.shields.io/badge/OpenAPI-valid-brightgreen.svg)](http://online.swagger.io/validator?url=https://raw.githubusercontent.com/amardeshbd/feedly-cloud-api-specification/master/feedly-api-specification.yaml)
+
 # Unofficial Feedly Cloud API Specification
 
 API spec for the feedly Cloud API using OpenAPI Specification (fka Swagger 2.0). Generates PHP, Java, Python, Go, Android, Objective-C and many more client SDK.
