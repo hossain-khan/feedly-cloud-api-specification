@@ -2,6 +2,8 @@
 
 API spec for the feedly Cloud API using OpenAPI Specification (fka Swagger 2.0). Generates PHP, Java, Python, Go, Android, Objective-C and many more client SDK.
 
+> **DISCLAIMER:** The API specification only includes **search** API to serve my need to searching RSS/Atom feeds. See official website for list of APIs supported.
+
  * **Official API Spec** can be found at [developer.feedly.com](http://developer.feedly.com/).
 
 ## Preview API Spec
