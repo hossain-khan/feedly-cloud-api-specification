@@ -17,9 +17,10 @@ java -jar swagger-codegen-cli-2.2.1.jar generate \
 	--input-spec feedly-api-specification.yaml \
 	--lang java \
 	--library retrofit2 \
+	-DuseRxJava=true \
 	--model-package com.feedly.cloud \
 	--api-package com.feedly.cloud \
 	--output feedly-api-client
 ```
 
-> NOTE: Download the CLI binary from [swagger-codegen](https://github.com/swagger-api/swagger-codegen).
+> NOTE: Download the CLI binary jar file from [swagger-codegen](https://github.com/swagger-api/swagger-codegen).
