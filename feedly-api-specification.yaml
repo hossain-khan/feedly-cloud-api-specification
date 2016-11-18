@@ -31,6 +31,8 @@ paths:
       description: Find feeds based on title, url or topic (Authorization is optional)
       produces:
         - application/json
+      tags:
+        - search
       parameters:
         - in: query
           name: query
@@ -41,7 +43,7 @@ paths:
           name: count
           description: The number of results. default value is 20
           required: false
-          type: number
+          type: integer
           format: int32
         - in: query
           name: locale
