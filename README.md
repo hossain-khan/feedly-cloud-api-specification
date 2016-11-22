@@ -22,8 +22,8 @@ java -jar swagger-codegen-cli-2.2.1.jar generate \
 	--lang java \
 	--library retrofit2 \
 	-DuseRxJava=true \
-	--model-package com.feedly.cloud \
-	--api-package com.feedly.cloud \
+	--model-package com.feedly.cloud.model \
+	--api-package com.feedly.cloud.endpoint \
 	--output feedly-api-client
 ```
 
